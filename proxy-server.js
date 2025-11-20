@@ -10,7 +10,7 @@ app.use(cors());
 // Proxy configuration
 const TARGET_PORT = process.env.TARGET_PORT || 3001;
 const vscodeProxy = createProxyMiddleware({
-  target: `https://localhost:${TARGET_PORT}`,
+  target: `http://localhost:${TARGET_PORT}`,
   changeOrigin: true,
   ws: true, // Enable WebSocket proxying
   
