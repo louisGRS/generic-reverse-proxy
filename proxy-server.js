@@ -26,7 +26,6 @@ const vscodeProxy = createProxyMiddleware({
   
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
-    res.status(500).send('Proxy error');
   }
 });
 
