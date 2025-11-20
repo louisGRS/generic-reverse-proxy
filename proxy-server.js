@@ -8,8 +8,9 @@ const app = express();
 app.use(cors());
 
 // Proxy configuration
+const TARGET_PORT = process.env.TARGET_PORT || 3001;
 const vscodeProxy = createProxyMiddleware({
-  target: 'https://3000--019a6e7c-0de8-7341-8d63-66b3c557285a.eu-central-1-01.gitpod.dev',
+  target: `https://localhost:${TARGET_PORT}`,
   changeOrigin: true,
   ws: true, // Enable WebSocket proxying
   
@@ -32,8 +33,7 @@ const vscodeProxy = createProxyMiddleware({
 // Apply proxy to all routes
 app.use('/', vscodeProxy);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Proxy server running on http://localhost:${PORT}`);
-  console.log(`Now you can embed http://localhost:${PORT} in an iframe`);
 });
